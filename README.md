@@ -36,8 +36,8 @@ It explores how factors like **idle time**, **overtime**, **bonuses**, and **pla
 - **Goal:** Predict team `efficiencyScore`
 - **Records:** Several hundred production logs
 - **Features:**  
-  - 🧮 **Numerical:** workerCount, idleMinutes, overtimeMinutes, performanceBonus, plannedEfficiency  
-  - 🏷️ **Categorical:** department, styleChangeCount  
+  - 🧮 **Numerical:** plannedEfficiency', 'standardMinuteValue', 'workInProgress','overtimeMinutes', 'performanceBonus', 'idleMinutes',                          'idleWorkers','workerCount', 'efficiencyScore 
+  - 🏷️ **Categorical:** 'recordDate', 'fiscalQuarter', 'productionDept', 'dayOfWeek', 'team', 'styleChangeCount' 
 
 ---
 
@@ -58,9 +58,8 @@ It explores how factors like **idle time**, **overtime**, **bonuses**, and **pla
 ---
 
 ## 🧹 Data Preprocessing
-- **Missing Values:** Median (numerical), Mode (categorical)  
-- **Outliers:** IQR capping and median replacement  
-- **Encoding:** Label Encoding for categorical variables  
+- **Outliers:** Percentile clipping and Percentile replacement  
+- **Encoding:** OHE Encoding for categorical variables  
 - **Scaling:** MinMaxScaler  
 - **Data Split:** 80% Train | 20% Test  
 
@@ -89,9 +88,9 @@ Three regression models implemented:
 ## 🧠 Model Comparison
 | Model | R² Score | RMSE | Observation |
 |--------|-----------|------|-------------|
-| Linear Regression | ~0.72 | Moderate | Simple baseline |
-| Decision Tree | ~0.80 | Lower | Captures nonlinearity |
-| Random Forest | **~0.88** | **Lowest** | Best generalization |
+| Linear Regression | ~0.34,0.77 | Moderate | Simple baseline |
+| Decision Tree | ~0.27,0.48 | Lower | Captures nonlinearity |
+| Random Forest | **~0.45,0.78** | **Lowest** | Best generalization |
 
 ✅ **Random Forest** achieved the best results with stable performance.
 
@@ -115,13 +114,12 @@ Three regression models implemented:
 ## 🔮 Future Enhancements
 - Apply **XGBoost / LightGBM**  
 - **Hyperparameter tuning**  
-- Deploy model via **Streamlit Dashboard**  
-- Integrate **Explainable AI (SHAP, LIME)**  
+
 
 ---
 
 ## 🧰 Tech Stack
-Python | pandas | numpy | matplotlib | seaborn | scikit-learn | Jupyter Notebook  
+Python | pandas | numpy | matplotlib | seaborn | scikit-learn | Colab 
 
 ---
 
@@ -145,8 +143,9 @@ It leverages behavioral and contextual session data to support data-driven marke
 - **Goal:** Predict `MonetaryConversion` (Yes/No)
 - **Records:** Thousands of web sessions
 - **Features:**  
-  - 🧮 **Numerical:** engagement metrics, browsing time, item views  
-  - 🏷️ **Categorical:** platform, region, user type, month, weekday flag  
+  - 🧮 **Numerical:** 'AdClicks', 'InfoSectionCount', 'InfoSectionTime','HelpPageVisits', 'HelpPageTime', 'ItemBrowseCount',
+                      'ExitRateFirstPage','SessionExitRatio','PageEngagementScore','HolidayProximityIndex',TrafficSourceCode'	
+  - 🏷️ **Categorical:** 'SessionID','VisitMonth','UserPlatformID','WebClientCode','MarketZone','UserCategory','MonetaryConversion'
 
 ---
 
@@ -204,8 +203,8 @@ Classification models implemented to predict conversion outcomes.
 ## 🧠 Model Comparison
 | Model | Accuracy | ROC-AUC | Observation |
 |--------|-----------|----------|--------------|
-| Logistic Regression | ~0.78 | ~0.80 | Good baseline |
-| Decision Tree | ~0.83 | ~0.85 | Nonlinear capture |
+| Logistic Regression | ~0.86 | ~0.85 | Good baseline |
+| Decision Tree | ~0.86 | ~0.87 | Nonlinear capture |
 | Random Forest | **~0.88** | **~0.90** | Best performer |
 
 ✅ **Random Forest Classifier** delivered the highest accuracy and generalization.
@@ -220,23 +219,15 @@ Classification models implemented to predict conversion outcomes.
 
 ---
 
-## 💡 Key Insights
-- **Returning mobile users** have higher conversion rates.  
-- **Engagement behavior** is the strongest predictor.  
-- **Festive months** correlate with higher conversions.  
-
----
 
 ## 🔮 Future Enhancements
 - Hyperparameter tuning (GridSearchCV / RandomizedSearchCV)  
 - Try **Gradient Boosting (XGBoost / LightGBM)**  
-- Feature selection with **SHAP / Permutation Importance**  
-- Deployment via **Flask / Streamlit**  
 
 ---
 
 ## 🧰 Tech Stack
-Python | pandas | numpy | scikit-learn | matplotlib | seaborn | Jupyter Notebook  
+Python | pandas | numpy | scikit-learn | matplotlib | seaborn | colab
 
 ---
 
@@ -249,8 +240,8 @@ An end-to-end ML system for predicting **customer conversion likelihood**, enabl
 
 | Task | Type | Model | Best Accuracy / R² | Key Insight |
 |------|------|--------|--------------------|--------------|
-| 🏭 Manufacturing | Regression | Random Forest | R² ≈ 0.88 | Efficiency depends on planned output & idle time |
-| 🧠 Retail Web Session | Classification | Random Forest | Accuracy ≈ 0.88 | Conversions depend on engagement & platform behavior |
+| 🏭 Manufacturing | Regression | Random Forest | R² ≈ 0.77 | Efficiency depends on planned output|
+| 🧠 Retail Web Session | Classification | Random Forest | Accuracy ≈ 0.88 | Conversions depend on engagement |
 
 ---
 
